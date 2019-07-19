@@ -30,89 +30,11 @@ addEventListener('mousemove', (event) => {
     mouse.y = event.clientY;
 });
 
-class Shape {
-    private gravity : number;
-    private friction: number;
-
-    constructor(private x: number, private y: number, private radius: number, private color: string, public dx: number, public dy: number) {
-        this.x        = x;
-        this.y        = y;
-        this.dy       = 0;
-        this.dx       = 0;
-        this.radius   = radius;
-        this.color    = color;
-        this.gravity  = 0;
-        this.friction = 0.89;
-    }
-
-    draw() {
-        c.beginPath();
-        c.fillStyle = this.color;
-        c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
-        c.fill();
-        c.stroke();
-        c.closePath();
-    }
-
-    update() {
-        if (mouse.x > this.x - this.radius && mouse.x < this.x + this.radius &&
-            mouse.y > this.y - this.radius && mouse.y < this.y + this.radius) {
-                if (mouse.x > this.x || mouse.y > this.y) {
-                    this.dx -= 20;
-                    this.dy -= 20;
-                    this.gravity -= 5;
-                } else {
-                    this.dx += 20;
-                    this.dy += 20;
-                    this.gravity += 5;
-                }
-        } else {
-            this.gravity = 0;
-            if (this.dx != 0) {
-                this.dx < 0 ? this.dx += 0.1 : this.dx -= 0.1;
-            }
-
-            if (this.dy != 0) {
-                this.dy < 0 ? this.dy += 0.1 : this.dx -= 0.1;
-            }
-        }
-
-        if (this.x + this.radius + this.dx > canvas.width  || this.x - this.radius <= 0) { this.dx *= -1 }
-        if (this.y + this.radius + this.dy > canvas.height || this.y - this.radius <= 0) { this.dy *= -1 }
-        this.x += this.dx;
-        this.y += this.dy;
-
-        this.draw();
-    }
-}
-
-class Animate {
-    display() {
-        c.clearRect(0, 0, canvas.width, canvas.height);
-        for(let draw of circleArray) {
-            draw.update();
-        }
-
-        requestAnimationFrame(() => this.display());
-    }
-}
-
-class Utils {
-    static randomIntFromRange(min: number, max: number) {
-        return Math.floor(Math.random() * (max - min + 1) + min)
-    }
-
-    static randomColor(col: string[]) {
-        return col[Math.floor(Math.random() * colors.length)]
-    }
-}
-
-
-let circleArray: Array<Shape> = [];
+let circleArray: Array<Shape>;
 
 function init() {
     circleArray = [];
-    for (let i = 0; i < 200 ; i++) {
+    for (let i = 0; i < 400 ; i++) {
         let radius: number = Utils.randomIntFromRange(10, 30);
         let x     : number = Utils.randomIntFromRange(radius, canvas.width - radius);
         let y     : number = Utils.randomIntFromRange(radius, canvas.height - radius);
