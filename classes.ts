@@ -32,8 +32,8 @@ class Shape {
     }
 
     update() {
-        if (mouse.x > this.x - this.radius && mouse.x < this.x + this.radius &&
-            mouse.y > this.y - this.radius && mouse.y < this.y + this.radius) {
+        if (mouse.x > this.x - 50 && mouse.x < this.x + 50 &&
+            mouse.y > this.y - 50 && mouse.y < this.y + 50) {
                 if (mouse.x > this.x || mouse.y > this.y) {
                     this.dx -= 20;
                     this.dy -= 20;
