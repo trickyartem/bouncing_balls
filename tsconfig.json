@@ -1,16 +1,10 @@
 {
     "compilerOptions": {
-        "target": "es5",
-        "module": "commonjs",
-        "noImplicitAny": true,
-        "removeComments": true,
-        "preserveConstEnums": true,
-        "sourceMap": true,
-        "outDir": "out"
-    },
-
-    "files": [
-        "main.ts",
-        "classes.ts"
-    ]
+      "outDir": "./dist/",
+      "sourceMap": true,
+      "noImplicitAny": true,
+      "module": "es6",
+      "target": "es5",
+      "allowJs": true
+    }
 }
